@@ -4,6 +4,7 @@ const prevBtn = document.getElementById("previousBtn");
 //a counter to keep track on what page we are on
 var pageCounter = 1;
 
+const mQuery = window.matchMedia('(max-width: 600px)');
 const form = document.querySelector('form');
 
 form.onsubmit = function(){
@@ -66,8 +67,16 @@ async function displayImagePage(pageNr){
 		// create image
 		var img = document.createElement("img");
 		img.setAttribute("src", json.hits[i].webformatURL);
-		img.setAttribute("height", "500px");
-		img.setAttribute("width", "500px");
+				if (mQuery.matches) { 
+					img.setAttribute("height", "300px");
+					img.setAttribute("width", "300px");
+				}
+				else{
+					img.setAttribute("height", "500px");
+					img.setAttribute("width", "500px");
+				}
+		
+
 
 		// create tag text
 		var tagText = document.createElement("p");
@@ -120,9 +129,4 @@ async function displayImagePage(pageNr){
 	}
 }
 
-const mQuery = window.matchMedia('(max-width: 600px)');
 
-		if (mQuery.matches) { 
-			document.getElementsByTagName("img").setAttribute("height", "150px");
-			document.getElementsByTagName("img").setAttribute("width", "150px");
-		}
