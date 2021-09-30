@@ -1,6 +1,6 @@
 const apiKey = '23566762-6346aa8b21c47a7baaa4f58ee';
 const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("previusBtn");
+const prevBtn = document.getElementById("previousBtn");
 //a counter to keep track on what page we are on
 var pageCounter = 1;
 
@@ -66,12 +66,8 @@ async function displayImagePage(pageNr){
 		// create image
 		var img = document.createElement("img");
 		img.setAttribute("src", json.hits[i].webformatURL);
-		img.setAttribute("height", "500");
-		img.setAttribute("width", "500");
-
-		
-
-		// document.getElementById("collage").appendChild(elem);
+		img.setAttribute("height", "500px");
+		img.setAttribute("width", "500px");
 
 		// create tag text
 		var tagText = document.createElement("p");
@@ -87,12 +83,25 @@ async function displayImagePage(pageNr){
 		container.appendChild(img);
 		container.appendChild(tagText);
 		container.appendChild(authorText);
+		img.style.objectFit = "cover";
 		container.style.padding = "20px";
+		container.style.margin = "10px";
 		container.style.color = "white";
 		container.style.backgroundColor = "black";
+		container.style.outline = "solid white"
 		tagText.style.textAlign = "center";
 		authorText.style.textAlign = "center";
 		tagText.style.fontSize = "1.5em";
+		
+		// if chosen color is transparent or grayscale,
+		// make background gray to ensure visibility
+		if(color.value == "transparent" || color.value == "grayscale"){
+			container.style.backgroundColor = "gray";
+		}
+		else{
+			container.style.backgroundColor = "black";
+		}
+
 		
 
 		// insert container into collage
@@ -110,3 +119,10 @@ async function displayImagePage(pageNr){
 		}
 	}
 }
+
+const mQuery = window.matchMedia('(max-width: 600px)');
+
+		if (mQuery.matches) { 
+			document.getElementsByTagName("img").setAttribute("height", "150px");
+			document.getElementsByTagName("img").setAttribute("width", "150px");
+		}

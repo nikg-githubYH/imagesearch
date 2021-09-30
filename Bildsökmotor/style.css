@@ -4,10 +4,11 @@
 }
 
 body {
-    background-image: url("bradpitt.jpg");  
+    background-image: url("https://images.wallpapersden.com/image/download/cool-4k-pattern_bGduZWyUmZqaraWkpJRobWllrWdma2U.jpg");  
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size: 100% 100%;
     text-align: center;
 }
 
@@ -16,21 +17,16 @@ h1 {
     font-size: 80px;
     font-weight: bold;
     color: white;
-}
-
-h1 span {
     background-color: black;
-    padding: 0px 20px 0px 20px;
 }
 
 form {
-    text-align: center;
     margin: 20px;
 }
 
 input {
     height: 43px;
-    width: 350px;
+    width: 400px;
     font-size: 18px;
     border-style: double;
     border-color: black;
@@ -40,7 +36,6 @@ input {
 select, button {
     height: 50px;
     width: 150px;
-    text-align: center;
     font-size: 18px;
     border-radius: 0;
     border-style: double;
@@ -56,6 +51,7 @@ button {
 .pageBtn{
     display: none;
     margin: 20px;
+    font-size: large;
 }
 
 #collage {
@@ -65,4 +61,15 @@ button {
     justify-content: center;
     max-width: 1500px;
     margin: 0 auto;
+}
+
+@media (max-width: 600px){
+
+    h1 {
+        font-size: 50px;
+    }
+    
+    input {
+        width: 350px;
+    }
 }
