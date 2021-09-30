@@ -48,3 +48,16 @@ button {
     background-color: white;
     margin-left: 20px;
 }
+
+.pageBtn{
+    display: none;
+}
+
+#collage {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1500px;
+    width: 1000px;
+    margin: 0 auto;
+}
