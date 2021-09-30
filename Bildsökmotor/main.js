@@ -29,7 +29,6 @@ prevBtn.onclick = function(){
 			prevBtn.disabled = true;
 		}
 	}
-
 } 
 
 async function displayImagePage(pageNr){
@@ -61,15 +60,43 @@ async function displayImagePage(pageNr){
 	}
 	
 	for(let i = 0; i < json.hits.length; i++){
-		var elem = document.createElement("img");
-		elem.setAttribute("src", json.hits[i].webformatURL);
-		elem.setAttribute("height", "500");
-		elem.setAttribute("width", "500");
-		document.getElementById("collage").appendChild(elem);
-		var tag = document.createElement("p");
-		var author = document.createTextNode(json.hits[i].user);
-		tag.appendChild(author);
-		document.getElementById("collage").appendChild(tag);
+		// container = img + text
+		var container = document.createElement("container");
+
+		// create image
+		var img = document.createElement("img");
+		img.setAttribute("src", json.hits[i].webformatURL);
+		img.setAttribute("height", "500");
+		img.setAttribute("width", "500");
+
+		
+
+		// document.getElementById("collage").appendChild(elem);
+
+		// create tag text
+		var tagText = document.createElement("p");
+		var tags = document.createTextNode(json.hits[i].tags);
+		tagText.appendChild(tags);
+
+		// create author text
+		var authorText = document.createElement("p");
+		var author = document.createTextNode("taken by: " + json.hits[i].user);
+		authorText.appendChild(author);
+
+		// insert image and text into container, with styles
+		container.appendChild(img);
+		container.appendChild(tagText);
+		container.appendChild(authorText);
+		container.style.padding = "20px";
+		container.style.color = "white";
+		container.style.backgroundColor = "black";
+		tagText.style.textAlign = "center";
+		authorText.style.textAlign = "center";
+		tagText.style.fontSize = "1.5em";
+		
+
+		// insert container into collage
+		document.getElementById("collage").appendChild(container);
 
 	}
 

@@ -5,7 +5,10 @@
 
 body {
     background-image: url("bradpitt.jpg");  
-    background-color: #cccccc; 
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
 }
 
 h1 {
@@ -22,6 +25,7 @@ h1 span {
 
 form {
     text-align: center;
+    margin: 20px;
 }
 
 input {
@@ -51,13 +55,14 @@ button {
 
 .pageBtn{
     display: none;
+    margin: 20px;
 }
 
 #collage {
-    background-color: white;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     max-width: 1500px;
-    width: 1000px;
     margin: 0 auto;
 }
