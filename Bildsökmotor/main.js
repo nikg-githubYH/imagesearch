@@ -1,30 +1,36 @@
 const apiKey = '23566762-6346aa8b21c47a7baaa4f58ee';
+
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("previousBtn");
-//a counter to keep track on what page we are on
+
+// a counter to keep track on what page we are on
 var pageCounter = 1;
 
-const mQuery = window.matchMedia('(max-width: 600px)');
 const form = document.querySelector('form');
 
 
-
+// when searching, call function for displaying images
+// also display previous and next buttons
+// previous button is disabled on page 1
 form.onsubmit = function(event){
 	event.preventDefault();
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
 	prevBtn.disabled = true;
 	nextBtn.style.display = "inline-block";
-	//if we start a new search, pagenumber gets reset
+
+	// if we start a new search, pagenumber gets reset
 	pageCounter = 1;
 }
 
+// when next button is clicked, load next 10 pictures - next page
 nextBtn.onclick = function(){
 	pageCounter++;
 	displayImagePage(pageCounter);
 	prevBtn.disabled = false;
 }
 
+// when previous button is clicked, load previous 10 pictures - previous page
 prevBtn.onclick = function(){
 	if(pageCounter > 1){
 		pageCounter--;
@@ -35,8 +41,10 @@ prevBtn.onclick = function(){
 	}
 } 
 
+// displays images (10x) on the site
 async function displayImagePage(pageNr){
-	//a new search clears all images
+
+	// a new search clears all images
 	removeAllChildren(collage);
 	const motive = form.elements.motive.value;
 	let color = document.querySelector("#color");
@@ -54,7 +62,7 @@ async function displayImagePage(pageNr){
 
 	var totalPages = Math.ceil(json.total / 10);
 
-	//if we are at the last page we disable the next button otherwise we enable it
+	// if we are at the last page we disable the next button otherwise we enable it
 	if(pageNr >= totalPages){
 		nextBtn.disabled = true;
 	}
@@ -63,26 +71,15 @@ async function displayImagePage(pageNr){
 	}
 	
 	for(let i = 0; i < json.hits.length; i++){
-		// container = img + text
+
+		// create container
 		var container = document.createElement("container");
 
 		// create image
 		var img = document.createElement("img");
 		img.setAttribute("src", json.hits[i].webformatURL);
-
-		// if (mQuery.matches) { 
-		// 	img.setAttribute("height", "300px");
-		// 	img.setAttribute("width", "300px");
-		// }
-		// else{
-		// 	img.setAttribute("height", "500px");
-		// 	img.setAttribute("width", "500px");
-		// }
-
 		img.setAttribute("height", "350px");
 		img.setAttribute("width", "350px");
-		
-
 
 		// create tag text
 		var tagText = document.createElement("p");
@@ -94,7 +91,7 @@ async function displayImagePage(pageNr){
 		var author = document.createTextNode("posted by: " + json.hits[i].user);
 		authorText.appendChild(author);
 
-		// insert image and text into container, with styles
+		// insert image and text into container, add styling
 		container.appendChild(img);
 		container.appendChild(tagText);
 		container.appendChild(authorText);
@@ -109,8 +106,7 @@ async function displayImagePage(pageNr){
 		authorText.style.textAlign = "center";
 		tagText.style.fontSize = "1.5em";
 		
-		// if chosen color is transparent or grayscale,
-		// make background gray to ensure visibility
+		// if chosen color is transparent or grayscale, make background gray to ensure visibility
 		if(color.value == "transparent" || color.value == "grayscale"){
 			container.style.backgroundColor = "gray";
 		}
@@ -122,7 +118,7 @@ async function displayImagePage(pageNr){
 		document.getElementById("collage").appendChild(container);
 	}
 
-	//document.getElementById("collage").style.display = "inline-block";
+	// console logs for acquired data via json
 	console.log(json);
 
 	// a function to clear all images when we initiate a new search

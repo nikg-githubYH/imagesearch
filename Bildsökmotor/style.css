@@ -70,8 +70,9 @@ button {
         padding: 10px;
     }
 
-    button[type="submit"] {
-        margin: 10px auto;
+    select, button[type="submit"] {
+        width: 100px;
+        margin: 5px 5px;
     }
 
     #collage {
@@ -81,6 +82,10 @@ button {
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+    }
+
+    .pageBtn{
+        margin: 10px;
     }
 }
 
@@ -93,14 +98,5 @@ button {
     input {
         width: 250px;
         margin: auto;
-    }
-
-    select, button[type="submit"] {
-        width: 100px;
-        margin: 10px auto;
-    }
-
-    .pageBtn{
-        margin: 10px;
     }
 }
