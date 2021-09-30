@@ -63,6 +63,17 @@ button {
     margin: 0 auto;
 }
 
+@media (max-width: 800px){
+
+    h1 {
+        padding: 10px;
+    }
+
+    button[type="submit"] {
+        margin: 10px auto;
+    }
+}
+
 @media (max-width: 600px){
 
     h1 {
@@ -70,6 +81,12 @@ button {
     }
     
     input {
-        width: 350px;
+        width: 250px;
+        margin: auto;
+    }
+
+    select, button[type="submit"] {
+        width: 100px;
+        margin: 10px auto;
     }
 }
