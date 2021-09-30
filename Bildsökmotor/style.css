@@ -1,6 +1,7 @@
 * {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: italic;
+    overflow-anchor: none;
 }
 
 body {
@@ -40,7 +41,7 @@ select, button {
     border-radius: 0;
     border-style: double;
     border-color: black;
-
+    text-align: center;
 }
 
 button {
@@ -59,7 +60,7 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1500px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -71,6 +72,15 @@ button {
 
     button[type="submit"] {
         margin: 10px auto;
+    }
+
+    #collage {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
     }
 }
 
@@ -88,5 +98,9 @@ button {
     select, button[type="submit"] {
         width: 100px;
         margin: 10px auto;
+    }
+
+    .pageBtn{
+        margin: 10px;
     }
 }

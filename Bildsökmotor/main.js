@@ -7,7 +7,10 @@ var pageCounter = 1;
 const mQuery = window.matchMedia('(max-width: 600px)');
 const form = document.querySelector('form');
 
-form.onsubmit = function(){
+
+
+form.onsubmit = function(event){
+	event.preventDefault();
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
 	prevBtn.disabled = true;
@@ -20,7 +23,7 @@ nextBtn.onclick = function(){
 	pageCounter++;
 	displayImagePage(pageCounter);
 	prevBtn.disabled = false;
-} 
+}
 
 prevBtn.onclick = function(){
 	if(pageCounter > 1){
@@ -33,7 +36,6 @@ prevBtn.onclick = function(){
 } 
 
 async function displayImagePage(pageNr){
-	event.preventDefault();
 	//a new search clears all images
 	removeAllChildren(collage);
 	const motive = form.elements.motive.value;
@@ -67,14 +69,18 @@ async function displayImagePage(pageNr){
 		// create image
 		var img = document.createElement("img");
 		img.setAttribute("src", json.hits[i].webformatURL);
-				if (mQuery.matches) { 
-					img.setAttribute("height", "300px");
-					img.setAttribute("width", "300px");
-				}
-				else{
-					img.setAttribute("height", "500px");
-					img.setAttribute("width", "500px");
-				}
+
+		// if (mQuery.matches) { 
+		// 	img.setAttribute("height", "300px");
+		// 	img.setAttribute("width", "300px");
+		// }
+		// else{
+		// 	img.setAttribute("height", "500px");
+		// 	img.setAttribute("width", "500px");
+		// }
+
+		img.setAttribute("height", "350px");
+		img.setAttribute("width", "350px");
 		
 
 
@@ -85,7 +91,7 @@ async function displayImagePage(pageNr){
 
 		// create author text
 		var authorText = document.createElement("p");
-		var author = document.createTextNode("taken by: " + json.hits[i].user);
+		var author = document.createTextNode("posted by: " + json.hits[i].user);
 		authorText.appendChild(author);
 
 		// insert image and text into container, with styles
@@ -98,6 +104,7 @@ async function displayImagePage(pageNr){
 		container.style.color = "white";
 		container.style.backgroundColor = "black";
 		container.style.outline = "solid white"
+		container.style.maxWidth = "350px";
 		tagText.style.textAlign = "center";
 		authorText.style.textAlign = "center";
 		tagText.style.fontSize = "1.5em";
@@ -111,11 +118,8 @@ async function displayImagePage(pageNr){
 			container.style.backgroundColor = "black";
 		}
 
-		
-
 		// insert container into collage
 		document.getElementById("collage").appendChild(container);
-
 	}
 
 	//document.getElementById("collage").style.display = "inline-block";
@@ -128,5 +132,4 @@ async function displayImagePage(pageNr){
 		}
 	}
 }
-
 
