@@ -7,6 +7,8 @@ var pageCounter = 1;
 const mQuery = window.matchMedia('(max-width: 600px)');
 const form = document.querySelector('form');
 
+/*the next, previus and submit buttons are doing similar things, so we call the displayImagePage
+funcion on all of then with different conditions and variables*/
 form.onsubmit = function(){
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
@@ -34,7 +36,7 @@ prevBtn.onclick = function(){
 
 async function displayImagePage(pageNr){
 	event.preventDefault();
-	//a new search clears all images
+	//a new search or new page clears all images before we add new ones
 	removeAllChildren(collage);
 	const motive = form.elements.motive.value;
 	let color = document.querySelector("#color");
@@ -62,22 +64,20 @@ async function displayImagePage(pageNr){
 	
 	for(let i = 0; i < json.hits.length; i++){
 		// container = img + text
-		var container = document.createElement("container");
+		const container = document.createElement("container");
 
 		// create image
 		var img = document.createElement("img");
 		img.setAttribute("src", json.hits[i].webformatURL);
 				if (mQuery.matches) { 
-					img.setAttribute("height", "300px");
-					img.setAttribute("width", "300px");
+					img.setAttribute("height", "275px");
+					img.setAttribute("width", "275px");
 				}
 				else{
-					img.setAttribute("height", "500px");
-					img.setAttribute("width", "500px");
+					img.setAttribute("height", "350px");
+					img.setAttribute("width", "350px");
 				}
 		
-
-
 		// create tag text
 		var tagText = document.createElement("p");
 		var tags = document.createTextNode(json.hits[i].tags);
@@ -97,7 +97,13 @@ async function displayImagePage(pageNr){
 		container.style.margin = "10px";
 		container.style.color = "white";
 		container.style.backgroundColor = "black";
-		container.style.outline = "solid white"
+		container.style.outline = "solid white";
+		if(mQuery.matches){
+			container.style.maxWidth = "275px";
+		}
+		else{
+			container.style.maxWidth = "350px";
+		}
 		tagText.style.textAlign = "center";
 		authorText.style.textAlign = "center";
 		tagText.style.fontSize = "1.5em";
@@ -109,17 +115,11 @@ async function displayImagePage(pageNr){
 		}
 		else{
 			container.style.backgroundColor = "black";
-		}
-
-		
+		}		
 
 		// insert container into collage
 		document.getElementById("collage").appendChild(container);
-
 	}
-
-	//document.getElementById("collage").style.display = "inline-block";
-	console.log(json);
 
 	// a function to clear all images when we initiate a new search
 	function removeAllChildren(parent){
@@ -128,5 +128,3 @@ async function displayImagePage(pageNr){
 		}
 	}
 }
-
-
