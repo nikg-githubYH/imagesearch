@@ -7,9 +7,10 @@ var pageCounter = 1;
 const mQuery = window.matchMedia('(max-width: 800px)');
 const form = document.querySelector('form');
 
-/*the next, previus and submit buttons are doing similar things, so we call the displayImagePage
+/*the next, previous and submit buttons are doing similar things, so we call the displayImagePage
 funcion on all of then with different conditions and variables*/
-form.onsubmit = function(){
+form.onsubmit = function(event){
+	event.preventDefault();
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
 	prevBtn.disabled = true;
@@ -35,7 +36,6 @@ prevBtn.onclick = function(){
 } 
 
 async function displayImagePage(pageNr){
-	event.preventDefault();
 	//a new search or new page clears all images before we add new ones
 	removeAllChildren(collage);
 	const motive = form.elements.motive.value;
@@ -63,7 +63,7 @@ async function displayImagePage(pageNr){
 	}
 	
 	for(let i = 0; i < json.hits.length; i++){
-		// container = img + text
+		// create container
 		const container = document.createElement("container");
 
 		// create image
