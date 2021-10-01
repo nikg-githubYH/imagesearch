@@ -1,6 +1,7 @@
 * {
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: italic;
+    overflow-anchor: none;
 }
 
 body {
@@ -40,7 +41,7 @@ select, button {
     border-radius: 0;
     border-style: double;
     border-color: black;
-
+    text-align: center;
 }
 
 button {
@@ -59,8 +60,33 @@ button {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 1500px;
+    max-width: 1800px;
     margin: 0 auto;
+}
+
+@media (max-width: 800px){
+
+    h1 {
+        padding: 10px;
+    }
+
+    select, button[type="submit"] {
+        width: 100px;
+        margin: 5px 5px;
+    }
+
+    #collage {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .pageBtn{
+        margin: 10px;
+    }
 }
 
 @media (max-width: 600px){
@@ -70,6 +96,7 @@ button {
     }
     
     input {
-        width: 350px;
+        width: 250px;
+        margin: auto;
     }
 }
