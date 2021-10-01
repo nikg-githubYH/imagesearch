@@ -4,7 +4,7 @@ const prevBtn = document.getElementById("previousBtn");
 //a counter to keep track on what page we are on
 var pageCounter = 1;
 
-const mQuery = window.matchMedia('(max-width: 600px)');
+const mQuery = window.matchMedia('(max-width: 800px)');
 const form = document.querySelector('form');
 
 /*the next, previus and submit buttons are doing similar things, so we call the displayImagePage
