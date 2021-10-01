@@ -6,7 +6,7 @@
 
 body {
     background-image: url("wallpaper.jpg");  
-    background-color: #cccccc;
+    /* background-color: #cccccc; */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
