@@ -28,6 +28,7 @@ form.onsubmit = function(event){
 
 nextBtn.onclick = function(){
 	pageCounter++;
+	form.motive.value = motive;
 	displayImagePage(pageCounter);
 	prevBtn.disabled = false;
 } 
@@ -40,6 +41,7 @@ prevBtn.onclick = function(){
 			prevBtn.disabled = true;
 		}
 	}
+	form.motive.value = motive;
 } 
 
 async function displayImagePage(pageNr){
@@ -69,7 +71,7 @@ async function displayImagePage(pageNr){
 	
 	for(let i = 0; i < json.hits.length; i++){
 		// create container
-		const container = document.createElement("container");
+		const container = document.createElement("div");
 
 		// create image
 		var img = document.createElement("img");
