@@ -7,7 +7,7 @@ var pageCounter = 1;
 var motive;
 var color;
 
-const mQuery = window.matchMedia('(max-width: 800px)');
+const mQuery = window.matchMedia('(max-width: 820px)');
 const form = document.querySelector('form');
 
 /*the next, previous and submit buttons are doing similar things, so we call the displayImagePage
@@ -29,6 +29,7 @@ form.onsubmit = function(event){
 nextBtn.onclick = function(){
 	pageCounter++;
 	form.motive.value = motive;
+	form.selectColor.value = color;
 	displayImagePage(pageCounter);
 	prevBtn.disabled = false;
 } 
@@ -42,6 +43,7 @@ prevBtn.onclick = function(){
 		}
 	}
 	form.motive.value = motive;
+	form.selectColor.value = color;
 } 
 
 async function displayImagePage(pageNr){
