@@ -5,7 +5,7 @@ const prevBtn = document.getElementById("previousBtn");
 var pageCounter = 1;
 
 var motive;
-var colorPicker = document.querySelector("#color");
+var color;
 
 const mQuery = window.matchMedia('(max-width: 800px)');
 const form = document.querySelector('form');
@@ -15,7 +15,8 @@ funcion on all of then with different conditions and variables
 The submit button is the only button to change our motive and color so we define them here*/
 form.onsubmit = function(event){
 	motive = form.elements.motive.value;
-	let color = colorPicker.Value;
+	color = form.elements.selectColor.value;
+
 	event.preventDefault();
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
