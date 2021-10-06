@@ -4,12 +4,18 @@ const prevBtn = document.getElementById("previousBtn");
 //a counter to keep track on what page we are on
 var pageCounter = 1;
 
+var motive;
+var colorPicker = document.querySelector("#color");
+
 const mQuery = window.matchMedia('(max-width: 800px)');
 const form = document.querySelector('form');
 
 /*the next, previous and submit buttons are doing similar things, so we call the displayImagePage
-funcion on all of then with different conditions and variables*/
+funcion on all of then with different conditions and variables
+The submit button is the only button to change our motive and color so we define them here*/
 form.onsubmit = function(event){
+	motive = form.elements.motive.value;
+	let color = colorPicker.Value;
 	event.preventDefault();
 	displayImagePage(1);
 	prevBtn.style.display = "inline-block";
@@ -38,13 +44,11 @@ prevBtn.onclick = function(){
 async function displayImagePage(pageNr){
 	//a new search or new page clears all images before we add new ones
 	removeAllChildren(collage);
-	const motive = form.elements.motive.value;
-	let color = document.querySelector("#color");
 
 	const params = new URLSearchParams({
 		key: apiKey,
 		q: motive,
-		colors: color.value,
+		colors: color,
 		per_page: 10,
 		page: pageNr
 	})
